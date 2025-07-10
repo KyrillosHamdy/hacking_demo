@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Quiz</title>
+  <script>
+    let answers = [null, null, null];
+
+    function handleAnswer(index, value) {
+      answers[index] = value;
+      const trueBtn = document.getElementById(`true-${index}`);
+      const falseBtn = document.getElementById(`false-${index}`);
+
+      if (value === true) {
+        trueBtn.classList.add("selected");
+        falseBtn.classList.remove("selected");
+      } else {
+        falseBtn.classList.add("selected");
+        trueBtn.classList.remove("selected");
+      }
+    }
+
+    function handleSubmit() {
+      if (answers.includes(null)) {
+        alert("Please answer all questions!");
+        return;
+      }
+      document.body.innerHTML = `<div style='min-height: 100vh; display: flex; align-items: center; justify-content: center; background: black;'><h1 style='font-size: 2.5rem; color: red; animation: pulse 1s infinite;'>💀 YOU GOT HACKED!</h1></div>`;
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200, 100, 200]);
+      }
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to right, #a78bfa, #f472b6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
+      cursor: pointer;
+      background: #e2e8f0;
+    }
+    button.selected {
+      background: #3b82f6;
+      color: white;
+    }
+    #submitBtn {
+      background: #10b981;
+      color: white;
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 1rem;">🔐 Security Quiz</h1>
+    <div class="question">
+      <p>1. Is using strong, unique passwords important for security?</p>
+      <button id="true-0" onclick="handleAnswer(0, true)">True</button>
+      <button id="false-0" onclick="handleAnswer(0, false)">False</button>
+    </div>
+    <div class="question">
+      <p>2. Can clicking on unknown email attachments be dangerous?</p>
+      <button id="true-1" onclick="handleAnswer(1, true)">True</button>
+      <button id="false-1" onclick="handleAnswer(1, false)">False</button>
+    </div>
+    <div class="question">
+      <p>3. Is it safe to reuse the same password for multiple accounts?</p>
+      <button id="true-2" onclick="handleAnswer(2, true)">True</button>
+      <button id="false-2" onclick="handleAnswer(2, false)">False</button>
+    </div>
+    <button id="submitBtn" onclick="handleSubmit()">Submit</button>
+  </div>
+</body>
+</html>
