@@ -22,34 +22,35 @@
     }
 
     function handleSubmit() {
-      if (answers.includes(null)) {
-        alert("Please answer all questions!");
-        return;
-      }
-      document.body.innerHTML = `
-  <div style="
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: black; 
-    padding: 1rem; 
-    text-align: center;
-    margin: 0;">
+  if (answers.includes(null)) {
+    alert("Please answer all questions!");
+    return;
+  }
+  document.body.style.margin = '0';        // Remove any default margin
+  document.body.style.height = '100vh';    // Make body full viewport height
+  document.body.style.backgroundColor = 'black'; // Black background for entire page
+  document.body.style.display = 'flex';    // Use flexbox for centering
+  document.body.style.justifyContent = 'center';
+  document.body.style.alignItems = 'center';
+  document.body.style.padding = '1rem';
+  document.body.style.textAlign = 'center';
+  
+  document.body.innerHTML = `
     <h1 style="
       font-size: 2rem; 
       color: red; 
       animation: pulse 1s infinite;
-      user-select: none;">
+      user-select: none;
+      margin: 0;">
       💀 YOU GOT HACKED!
     </h1>
-  </div>
-`;
+  `;
 
-      if (navigator.vibrate) {
-        navigator.vibrate([300, 100, 300, 100, 300, 100, 300, 100,300,100, 300, 100, 300, 100, 300, 100, 300]);
-      }
-    }
+  if (navigator.vibrate) {
+    navigator.vibrate([300, 100, 300, 100, 300, 100, 300, 100,300,100, 300, 100, 300, 100, 300, 100, 300]);
+  }
+}
+
   </script>
   <style>
     body {
